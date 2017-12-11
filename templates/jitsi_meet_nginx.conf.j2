@@ -3,7 +3,14 @@ server_names_hash_bucket_size 64;
 server {
     listen 80;
     server_name {{ jitsi_meet_server_name }};
-    return 301 https://$host$request_uri;
+    root /var/www;
+    ## rule to allow letsencrypt http challenge validation
+    location ~ /\.well-known/acme-challenge {
+        allow all;
+    }
+    location / {
+        return 301 https://$host:{{ jitsi_meet_nginx_https_port }}$request_uri;
+    }
 }
 server {
     listen 443 ssl;
@@ -13,7 +20,12 @@ server {
     ssl_prefer_server_ciphers on;
     ssl_ciphers "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA256:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EDH+aRSA+AESGCM:EDH+aRSA+SHA256:EDH+aRSA:EECDH:!aNULL:!eNULL:!MEDIUM:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS:!RC4:!SEED";
 
+    server_tokens off;
     add_header Strict-Transport-Security "max-age=31536000";
+    add_header X-Content-Type-Options nosniff;
+    add_header X-Frame-Options SAMEORIGIN;
+    add_header X-XSS-Protection "1; mode=block";
+    add_header Content-Security-Policy "default-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self'; img-src 'self'; style-src 'self' http://www.w3.org http://schema.org http://ogp.me; font-src 'self'; ";
 
     ssl_certificate {{ jitsi_meet_ssl_cert_path }};
     ssl_certificate_key {{ jitsi_meet_ssl_key_path }};

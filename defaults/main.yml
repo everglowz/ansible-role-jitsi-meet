@@ -73,15 +73,15 @@ jitsi_meet_desktop_sharing_firefox_max_version_ext_required: '-1'
 # These debconf settings represent answers to interactive prompts during installation
 # of the jitsi-meet deb package. If you use custom SSL certs, you may have to set more options.
 jitsi_meet_debconf_settings:
-  - name: jitsi-meet
+  - name: jitsi-meet/jvb-hostname
     question: jitsi-meet/jvb-hostname
     value: "{{ jitsi_meet_server_name }}"
     vtype: string
-  - name: jitsi-meet
+  - name: jitsi-meet/jvb-serve
     question: jitsi-meet/jvb-serve
     value: "false"
     vtype: boolean
-  - name: jitsi-meet-prosody
+  - name: jitsi-meet-prosody/jvb-hostname
     question: jitsi-meet-prosody/jvb-hostname
     value: "{{ jitsi_meet_server_name }}"
     vtype: string
