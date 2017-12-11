@@ -55,6 +55,12 @@ jitsi_meet_videobridge_loglevel: INFO
 # https://github.com/jitsi/jitsi-meet/pull/427
 jitsi_meet_disable_third_party_requests: true
 
+# When enabled, the system will try to establish a direct connection when
+# there are exactly 2 participants in the room. However, for international
+# calls a participant that has slow uploads will suffer as compared to
+# uploading to the JVB server if it is local.
+jitsi_meet_enable_P2P: true
+
 # Screensharing config for Chrome. You'll need to build and package a browser
 # extension specifically for your domain; see https://github.com/jitsi/jidesha
 jitsi_meet_desktop_sharing_chrome_method: 'ext'
