@@ -13,6 +13,10 @@ VirtualHost "{{ jitsi_meet_server_name }}"
 
 VirtualHost "auth.{{ jitsi_meet_server_name }}"
     authentication = "internal_plain"
+    ssl = {
+        key = "/var/lib/prosody/auth.localhost.key";
+        certificate = "/var/lib/prosody/auth.localhost.crt";
+    }
 
 Component "conference.{{ jitsi_meet_server_name }}" "muc"
 

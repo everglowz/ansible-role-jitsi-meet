@@ -19,7 +19,7 @@ var config = {
         domain: '{{ jitsi_meet_server_name }}',
 
         // XMPP MUC domain. FIXME: use XEP-0030 to discover it.
-        muc: 'conference.{{ jitsi_meet_server_name }}'
+        muc: 'conference.{{ jitsi_meet_server_name }}',
 
         // When using authentication, domain for guest users.
         // anonymousdomain: 'guest.example.com',
@@ -249,10 +249,10 @@ var config = {
 
     // enables callstatsUsername to be reported as statsId and used
     // by callstats as repoted remote id
-    // enableStatsID: false
+    // enableStatsID: false,
 
     // enables sending participants display name to callstats
-    // enableDisplayNameInStats: false
+    // enableDisplayNameInStats: false,
 
 
     // Privacy
@@ -296,7 +296,7 @@ var config = {
 
         // If set to true, it will prefer to use H.264 for P2P calls (if H.264
         // is supported).
-        preferH264: true
+        preferH264: true,
 
         // If set to true, disable H.264 video codec by stripping it out of the
         // SDP.
