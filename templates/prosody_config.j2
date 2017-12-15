@@ -11,14 +11,19 @@ VirtualHost "{{ jitsi_meet_server_name }}"
         "ping";
     }
 
+    c2s_require_encryption = false
+
 VirtualHost "auth.{{ jitsi_meet_server_name }}"
     authentication = "internal_plain"
     ssl = {
-        key = "/var/lib/prosody/auth.localhost.key";
-        certificate = "/var/lib/prosody/auth.localhost.crt";
+        key = "";
+        certificate = "";
+--        key = "/var/lib/prosody/auth.{{ jitsi_meet_server_name }}.key";
+--        certificate = "/var/lib/prosody/auth.{{ jitsi_meet_server_name }}.crt";
     }
 
 Component "conference.{{ jitsi_meet_server_name }}" "muc"
+    storage = "null"
 
 admins = { "focus@auth.{{ jitsi_meet_server_name }}" }
 

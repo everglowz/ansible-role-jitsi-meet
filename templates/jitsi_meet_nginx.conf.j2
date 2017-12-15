@@ -32,6 +32,7 @@ server {
 
     root /usr/share/jitsi-meet;
     index index.html index.htm;
+    error_page 404 /static/404.html;
 
     location /config.js {
         alias /etc/jitsi/meet/{{ jitsi_meet_server_name }}-config.js;
@@ -43,6 +44,11 @@ server {
 
     location / {
         ssi on;
+    }
+
+    # Backward compatibility
+    location ~ /external_api.* {
+        root /usr/share/jitsi-meet/libs;
     }
 
     # BOSH
